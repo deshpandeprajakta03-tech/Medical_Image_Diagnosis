@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medical Image Diagnosis</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <h1>🩺 Medical Image Diagnosis</h1>
+
+
+    <p class="subtitle">
+        AI Based Medical Image Classification System
+    </p>
+
+
+
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+
+
+
+        <!-- Disease Selection -->
+
+        <div class="upload-box">
+
+
+            <label>
+                Select Medical Test
+            </label>
+
+
+            <select name="disease" required>
+
+
+                <option value="">
+                    -- Select Disease Type --
+                </option>
+
+
+                <option value="skin">
+                    🩹 Skin Disease Detection
+                </option>
+
+
+                <option value="brain">
+                    🧠 Brain MRI Tumor Detection
+                </option>
+
+
+                <option value="xray">
+                    🩻 Chest X-Ray Pneumonia Detection
+                </option>
+
+
+            </select>
+
+
+        </div>
+
+
+
+
+
+        <!-- Image Upload -->
+
+
+        <div class="upload-box">
+
+
+            <label>
+                Upload Image
+            </label>
+
+
+            <input
+
+                type="file"
+
+                name="image"
+
+                accept="image/*"
+
+                required>
+
+
+        </div>
+
+
+
+
+        <button type="submit">
+
+            Predict Disease
+
+        </button>
+
+
+
+
+    </form>
+
+
+
+
+
+    {% if error %}
+
+
+    <div class="error">
+
+        {{ error }}
+
+    </div>
+
+
+    {% endif %}
+
+
+
+
+
+
+
+    {% if prediction %}
+
+
+
+    <div class="result">
+
+
+        <h2>
+            Prediction Result
+        </h2>
+
+
+
+
+        <img
+
+            src="/uploads/{{ image }}"
+
+            alt="Uploaded Image"
+
+            class="preview">
+
+
+
+
+
+        <h3>
+
+            Prediction :
+
+            <span>
+                {{ prediction }}
+            </span>
+
+        </h3>
+
+
+
+
+
+        <h3>
+
+            Confidence :
+
+            {{ confidence }} %
+
+        </h3>
+
+
+
+
+
+
+        {% if recommendation %}
+
+
+        <p class="recommendation">
+
+            {{ recommendation }}
+
+        </p>
+
+
+        {% endif %}
+
+
+
+
+    </div>
+
+
+
+    {% endif %}
+
+
+
+
+</div>
+
+
+</body>
+
+
+</html>
