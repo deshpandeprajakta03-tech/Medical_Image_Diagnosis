@@ -1,17 +1,40 @@
-# Medical Image Diagnosis using MobileNetV2
+# Medical Image Diagnosis using Deep Learning
 
-A web-based deep learning application that detects **Pneumonia** from chest X-ray images using **MobileNetV2** and **Flask**. Every prediction is automatically stored in **MongoDB Atlas** for record-keeping.
+A web-based deep learning application that detects multiple medical conditions from medical images using trained deep learning models and Flask. The application supports chest X-ray analysis, brain MRI tumor detection, and skin disease classification through a clean and responsive web interface.
+
+---
+
+## Supported Disease Categories
+
+| # | Category | Classes | Model |
+|---|---|---|---|
+| 1 | Chest X-ray Disease Detection | NORMAL, PNEUMONIA | MobileNetV2 |
+| 2 | Brain MRI Tumor Detection | Tumor, No Tumor | CNN |
+| 3 | Skin Disease Classification | Benign, Malignant | CNN |
 
 ---
 
 ## Features
 
-- Upload a chest X-ray image through a clean web interface
-- Predict **NORMAL** or **PNEUMONIA** using a trained MobileNetV2 model
-- Display confidence score for each prediction
-- Display a clinical recommendation based on the result
-- Store every prediction record in MongoDB Atlas
-- Responsive UI built with HTML and CSS
+- Upload medical images through a responsive web interface
+- Select disease detection category before prediction
+- AI-based prediction using trained deep learning models
+- Display prediction result with confidence score
+- Display clinical recommendation based on the result
+- Temporarily store uploaded images for preview
+- Clean and responsive HTML/CSS interface
+
+---
+
+## Model Details
+
+| Model File | Task | Architecture | Input Size |
+|---|---|---|---|
+| `medical_model.keras` | Chest X-ray (Normal vs Pneumonia) | MobileNetV2 | 128x128 |
+| `brain_mri_model.keras` | Brain MRI (Tumor vs No Tumor) | CNN | 128x128 |
+| `skin_disease.keras` | Skin Disease (Benign vs Malignant) | CNN | 128x128 |
+
+All models are trained using TensorFlow/Keras and saved in the `.keras` format.
 
 ---
 
@@ -20,12 +43,10 @@ A web-based deep learning application that detects **Pneumonia** from chest X-ra
 | Layer | Technology |
 |---|---|
 | Backend | Python, Flask |
-| Deep Learning | TensorFlow, Keras, MobileNetV2 |
-| Image Processing | OpenCV, NumPy |
-| Database | MongoDB Atlas |
-| Environment | python-dotenv |
-| Deployment | Gunicorn |
+| Deep Learning | TensorFlow, Keras, MobileNetV2, CNN |
+| Image Processing | OpenCV, NumPy, Pillow |
 | Frontend | HTML, CSS |
+| Environment | python-dotenv |
 
 ---
 
@@ -34,23 +55,23 @@ A web-based deep learning application that detects **Pneumonia** from chest X-ra
 ```
 Medical_Image_Diagnosis/
 │
-├── app.py                    # Flask application
-├── requirements.txt          # Python dependencies
-├── README.md                 # Project documentation
-├── .env                      # Environment variables (not committed)
-├── .gitignore
+├── app.py                        # Flask application (routes + prediction logic)
+├── requirements.txt              # Python dependencies
+├── README.md                     # Project documentation
+├── .gitignore                    # Git ignore rules
 │
 ├── model/
-│   ├── medical_model.keras   # Trained MobileNetV2 model
-│   └── class_names.txt       # Class labels (NORMAL, PNEUMONIA)
+│   ├── medical_model.keras       # Chest X-ray model (MobileNetV2)
+│   ├── brain_mri_model.keras     # Brain MRI tumor detection model
+│   └── skin_disease.keras         # Skin disease classification model
 │
 ├── static/
-│   └── style.css             # Application styles
+│   └── style.css                 # Application styles
 │
 ├── templates/
-│   └── index.html            # Web UI template
+│   └── index.html                # Web UI template
 │
-└── uploads/                  # Temporarily stores uploaded images
+└── uploads/                      # Temporarily stores uploaded images
     └── .gitkeep
 ```
 
@@ -85,31 +106,6 @@ pip install -r requirements.txt
 
 ---
 
-## MongoDB Atlas Setup
-
-1. Go to [https://www.mongodb.com/atlas](https://www.mongodb.com/atlas) and sign in
-2. Create a free cluster (M0)
-3. Under **Database Access**, create a database user with read/write permissions
-4. Under **Network Access**, add your IP address (or `0.0.0.0/0` for all)
-5. Click **Connect** on your cluster and copy the connection string
-6. Replace `<username>` and `<password>` with your database user credentials
-
----
-
-## Environment Variables
-
-Create a `.env` file in the project root with the following keys:
-
-```
-MONGO_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
-DB_NAME=medical_diagnosis_db
-COLLECTION_NAME=predictions
-```
-
-> The `.env` file is listed in `.gitignore` and will never be committed to GitHub.
-
----
-
 ## How to Run
 
 ```bash
@@ -122,21 +118,42 @@ Open your browser and navigate to:
 http://127.0.0.1:8000
 ```
 
-1. Click **Choose File** and select a chest X-ray image
-2. Click **Predict Disease**
-3. View the prediction, confidence score, and recommendation
-4. The result is saved automatically to MongoDB Atlas
+1. Select the disease detection category
+2. Click **Choose File** and upload a medical image
+3. Click **Predict Disease**
+4. View the prediction result, confidence score, and recommendation
+
+---
+
+## Screenshots
+
+> Screenshots will be added after final UI completion.
+
+| Home Page | Prediction Result |
+|---|---|
+| _Coming soon_ | _Coming soon_ |
+
+---
+
+## Dataset Summary
+
+| Dataset | Classes |
+|---|---|
+| Chest X-ray Dataset | Normal, Pneumonia |
+| Brain MRI Dataset | Tumor, No Tumor |
+| Skin Disease Dataset | Benign, Malignant |
 
 ---
 
 ## Future Enhancements
 
-- Add support for multi-class disease classification (e.g., COVID-19, TB)
-- Add a prediction history dashboard reading from MongoDB
-- Implement user authentication
-- Deploy to cloud platforms (Render, AWS, GCP)
+- Add support for additional disease categories (COVID-19, Tuberculosis, Retinal diseases)
 - Add Grad-CAM heatmap visualization for model explainability
-- Implement REST API endpoints for integration with other services
+- Build a prediction history dashboard
+- Implement user authentication and session management
+- Deploy to cloud platforms (Azure, AWS, GCP, Render)
+- Implement REST API endpoints for third-party integration
+- Add multi-language support for broader accessibility
 
 ---
 
