@@ -214,10 +214,37 @@ def uploaded_file(filename):
 
 @app.route("/")
 def home():
+    return render_template("home.html")
 
-    return render_template(
-        "index.html"
-    )
+
+# =====================================
+# Prediction Pages
+# =====================================
+
+
+@app.route("/xray")
+def xray():
+    return render_template("xray.html")
+
+
+@app.route("/mri")
+def mri():
+    return render_template("mri.html")
+
+
+@app.route("/skin")
+def skin():
+    return render_template("skin.html")
+
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
 
 
 
@@ -234,18 +261,15 @@ def home():
 def predict():
 
 
-    if "image" not in request.files:
+    disease_type = request.form.get("disease", "xray")
+    template_map = {"xray": "xray.html", "brain": "mri.html", "skin": "skin.html"}
+    template = template_map.get(disease_type, "xray.html")
 
-        return render_template(
-            "index.html",
-            error="Upload image"
-        )
+    if "image" not in request.files:
+        return render_template(template, error="Please upload an image.")
 
 
     file = request.files["image"]
-
-
-    disease_type = request.form["disease"]
 
 
 
@@ -385,15 +409,10 @@ def predict():
 
 
     return render_template(
-
-        "index.html",
-
+        template,
         prediction=result,
-
-        confidence=round(float(confidence),2),
-
+        confidence=round(float(confidence), 2),
         image=file.filename
-
     )
 
 

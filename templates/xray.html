@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}Chest X-Ray Prediction — Medical AI{% endblock %}
+
+{% block content %}
+<section class="predict-page">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="predict-header">
+      <span class="predict-badge badge-xray">
+        <i class="fa-solid fa-lungs"></i> Chest X-Ray Module
+      </span>
+      <h2>Chest X-Ray <span style="color:var(--primary)">Prediction</span></h2>
+      <p>Upload a chest X-ray image to detect Normal or Pneumonia using MobileNetV2.</p>
+    </div>
+
+    {% if error %}
+    <div class="alert alert-danger alert-custom mb-4">
+      <i class="fa-solid fa-triangle-exclamation me-2"></i>{{ error }}
+    </div>
+    {% endif %}
+
+    <div class="row g-4">
+
+      <!-- Upload Column -->
+      <div class="col-lg-6">
+        <div class="upload-card">
+          <h6 class="fw-700 mb-3" style="font-weight:700;">
+            <i class="fa-solid fa-cloud-arrow-up me-2" style="color:var(--primary)"></i>
+            Upload X-Ray Image
+          </h6>
+
+          <form action="/predict" method="POST" enctype="multipart/form-data" id="predictForm">
+            <input type="hidden" name="disease" value="xray">
+
+            <!-- Drop Zone -->
+            <div class="drop-zone" id="dropZone">
+              <input type="file" name="image" id="fileInput" accept="image/*" required>
+              <div class="drop-zone-icon"><i class="fa-solid fa-lungs"></i></div>
+              <h5>Drag & Drop your X-Ray here</h5>
+              <p>or click to browse files</p>
+              <span class="btn-browse">
+                <i class="fa-solid fa-folder-open me-1"></i> Browse Files
+              </span>
+              <p class="mt-2" style="font-size:0.75rem;color:#94a3b8;">
+                Supported: JPG, PNG, JPEG &nbsp;|&nbsp; Max 10MB
+              </p>
+            </div>
+
+            <!-- Preview -->
+            <div id="previewWrapper">
+              <img id="imgPreview" src="#" alt="Preview">
+              <button type="button" class="btn-remove" id="removeBtn">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+
+            <button type="submit" class="btn-predict xray-btn" id="predictBtn">
+              <i class="fa-solid fa-magnifying-glass"></i> Analyze X-Ray
+            </button>
+          </form>
+
+          <!-- Tips -->
+          <div class="mt-4 p-3" style="background:#f0f9ff;border-radius:10px;">
+            <p class="mb-1" style="font-size:0.82rem;font-weight:600;color:var(--primary-dark);">
+              <i class="fa-solid fa-lightbulb me-1"></i> Tips for best results
+            </p>
+            <ul style="font-size:0.8rem;color:var(--muted);margin:0;padding-left:1.2rem;">
+              <li>Use a clear, front-facing chest X-ray image</li>
+              <li>Ensure the image is well-lit with no blur</li>
+              <li>DICOM exports saved as JPEG/PNG work well</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result Column -->
+      <div class="col-lg-6">
+        <div class="result-card">
+          {% if prediction %}
+          <h5><i class="fa-solid fa-chart-bar me-2" style="color:var(--primary)"></i>Prediction Result</h5>
+
+          <div class="result-img-wrap">
+            <img src="/uploads/{{ image }}" alt="X-Ray" class="result-img">
+          </div>
+
+          <div class="text-center">
+            <p style="font-size:0.82rem;color:var(--muted);margin-bottom:0.2rem;">Detected Condition</p>
+            <div class="result-label {{ prediction | lower }}">
+              {% if prediction | lower == 'normal' %}
+                <i class="fa-solid fa-circle-check"></i>
+              {% else %}
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              {% endif %}
+              {{ prediction }}
+            </div>
+          </div>
+
+          <div class="confidence-bar-wrap">
+            <div class="confidence-label">
+              <span><i class="fa-solid fa-gauge me-1"></i>Confidence Score</span>
+              <span>{{ confidence }}%</span>
+            </div>
+            <div class="confidence-bar">
+              <div class="confidence-fill" style="width:{{ confidence }}%"></div>
+            </div>
+          </div>
+
+          <div class="recommendation-box {% if prediction | lower != 'normal' %}danger{% endif %}">
+            <strong>
+              <i class="fa-solid fa-user-doctor me-1"></i> Recommendation:
+            </strong><br>
+            {% if prediction | lower == 'normal' %}
+              Chest X-ray appears Normal. Continue routine health check-ups and maintain a healthy lifestyle.
+            {% else %}
+              Signs of Pneumonia detected. Please consult a qualified healthcare professional immediately for further evaluation.
+            {% endif %}
+          </div>
+
+          {% else %}
+          <!-- Placeholder -->
+          <div class="text-center py-5">
+            <i class="fa-solid fa-lungs" style="font-size:4rem;color:#e2e8f0;"></i>
+            <p class="mt-3" style="color:var(--muted);font-size:0.9rem;">
+              Upload a chest X-ray image and click<br><strong>Analyze X-Ray</strong> to see results here.
+            </p>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% block title %}Create Account — Medical AI{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+  <div class="container-fluid h-100">
+    <div class="row min-vh-100 g-0">
+
+      <!-- Left Panel -->
+      <div class="col-lg-5 d-none d-lg-flex auth-left"
+           style="background:linear-gradient(135deg,#d1fae5 0%,#e0f2fe 100%);">
+        <div>
+          <div class="auth-pill">
+            <i class="fa-solid fa-user-plus"></i> Join Medical AI
+          </div>
+          <div class="auth-left-icon">
+            <i class="fa-solid fa-stethoscope"></i>
+          </div>
+          <h2>Start Your AI<br>Diagnosis Journey</h2>
+          <p>
+            Create a free account and get access to three powerful
+            AI medical image analysis tools built with TensorFlow and Flask.
+          </p>
+          <div class="mt-4 d-flex flex-column gap-3" style="max-width:280px;margin:0 auto;">
+            <div style="background:white;border-radius:10px;padding:0.8rem 1rem;display:flex;align-items:center;gap:0.8rem;box-shadow:var(--shadow-sm);">
+              <i class="fa-solid fa-check-circle" style="color:var(--emerald);font-size:1.1rem;"></i>
+              <span style="font-size:0.85rem;font-weight:500;">Chest X-Ray Analysis</span>
+            </div>
+            <div style="background:white;border-radius:10px;padding:0.8rem 1rem;display:flex;align-items:center;gap:0.8rem;box-shadow:var(--shadow-sm);">
+              <i class="fa-solid fa-check-circle" style="color:var(--emerald);font-size:1.1rem;"></i>
+              <span style="font-size:0.85rem;font-weight:500;">Brain MRI Tumour Detection</span>
+            </div>
+            <div style="background:white;border-radius:10px;padding:0.8rem 1rem;display:flex;align-items:center;gap:0.8rem;box-shadow:var(--shadow-sm);">
+              <i class="fa-solid fa-check-circle" style="color:var(--emerald);font-size:1.1rem;"></i>
+              <span style="font-size:0.85rem;font-weight:500;">Skin Disease Classification</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Panel -->
+      <div class="col-lg-7 d-flex align-items-center justify-content-center p-4"
+           style="background:white;">
+        <div style="width:100%;max-width:460px;">
+
+          <div class="text-center mb-4">
+            <a href="/" style="text-decoration:none;">
+              <span style="font-size:2rem;font-weight:800;color:var(--primary-dark);">
+                Medical<span style="color:var(--emerald)">AI</span>
+              </span>
+            </a>
+          </div>
+
+          <div class="auth-card">
+            <h3>Create Account</h3>
+            <p class="sub">Join us to access AI-powered medical image diagnosis.</p>
+
+            <form id="registerForm" novalidate>
+
+              <!-- Full Name -->
+              <div class="input-group-custom">
+                <i class="fa-solid fa-user input-icon"></i>
+                <input type="text" class="form-control-custom" placeholder="Full name" required id="regName">
+              </div>
+
+              <!-- Email -->
+              <div class="input-group-custom">
+                <i class="fa-solid fa-envelope input-icon"></i>
+                <input type="email" class="form-control-custom" placeholder="Email address" required id="regEmail">
+              </div>
+
+              <!-- Phone -->
+              <div class="input-group-custom">
+                <i class="fa-solid fa-phone input-icon"></i>
+                <input type="tel" class="form-control-custom" placeholder="Phone number" id="regPhone">
+              </div>
+
+              <!-- Password -->
+              <div class="input-group-custom">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input type="password" class="form-control-custom" placeholder="Create password" required id="regPassword" style="padding-right:2.8rem;">
+                <button type="button" class="eye-toggle" onclick="togglePass('regPassword', this)">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+
+              <!-- Confirm Password -->
+              <div class="input-group-custom">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input type="password" class="form-control-custom" placeholder="Confirm password" required id="regConfirm" style="padding-right:2.8rem;">
+                <button type="button" class="eye-toggle" onclick="togglePass('regConfirm', this)">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+
+              <!-- Password strength -->
+              <div id="passStrengthWrap" style="display:none;margin-bottom:0.8rem;">
+                <div style="height:5px;border-radius:50px;background:var(--border);">
+                  <div id="passStrengthBar" style="height:100%;border-radius:50px;width:0;transition:all 0.3s;"></div>
+                </div>
+                <p id="passStrengthText" style="font-size:0.75rem;margin-top:0.3rem;"></p>
+              </div>
+
+              <!-- Terms -->
+              <label style="font-size:0.82rem;display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:1rem;cursor:pointer;">
+                <input type="checkbox" id="regTerms" style="accent-color:var(--primary);margin-top:2px;">
+                I agree to the <a href="#" class="auth-link ms-1">Terms of Service</a>
+                &nbsp;and&nbsp;<a href="#" class="auth-link">Privacy Policy</a>
+              </label>
+
+              <button type="submit" class="btn-auth" id="registerBtn"
+                      style="background:linear-gradient(135deg,var(--emerald),var(--primary));">
+                <i class="fa-solid fa-user-plus me-2"></i>Create Account
+              </button>
+            </form>
+
+            <div class="auth-divider">or</div>
+
+            <div class="text-center" style="font-size:0.88rem;">
+              Already have an account?
+              <a href="/login" class="auth-link ms-1">Sign In</a>
+            </div>
+          </div>
+
+          <p class="text-center mt-4" style="font-size:0.78rem;color:var(--muted);">
+            <i class="fa-solid fa-shield-halved me-1"></i>
+            For educational & research use only. Not a medical device.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function togglePass(id, btn) {
+  const inp = document.getElementById(id);
+  const icon = btn.querySelector('i');
+  if (inp.type === 'password') {
+    inp.type = 'text';
+    icon.classList.replace('fa-eye', 'fa-eye-slash');
+  } else {
+    inp.type = 'password';
+    icon.classList.replace('fa-eye-slash', 'fa-eye');
+  }
+}
+
+document.getElementById('regPassword').addEventListener('input', function() {
+  const val = this.value;
+  const wrap = document.getElementById('passStrengthWrap');
+  const bar  = document.getElementById('passStrengthBar');
+  const txt  = document.getElementById('passStrengthText');
+  wrap.style.display = val ? 'block' : 'none';
+  let score = 0;
+  if (val.length >= 8) score++;
+  if (/[A-Z]/.test(val)) score++;
+  if (/[0-9]/.test(val)) score++;
+  if (/[^A-Za-z0-9]/.test(val)) score++;
+  const levels = [
+    { w:'20%', c:'#ef4444', t:'Weak' },
+    { w:'45%', c:'#f59e0b', t:'Fair' },
+    { w:'70%', c:'#0ea5e9', t:'Good' },
+    { w:'100%',c:'#10b981', t:'Strong' },
+  ];
+  const l = levels[score - 1] || levels[0];
+  bar.style.width = l.w;
+  bar.style.background = l.c;
+  txt.textContent = 'Password strength: ' + l.t;
+  txt.style.color = l.c;
+});
+
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name    = document.getElementById('regName').value.trim();
+  const email   = document.getElementById('regEmail').value.trim();
+  const pass    = document.getElementById('regPassword').value;
+  const confirm = document.getElementById('regConfirm').value;
+  const terms   = document.getElementById('regTerms').checked;
+  const btn     = document.getElementById('registerBtn');
+
+  if (!name || !email || !pass || !confirm) { alert('Please fill in all required fields.'); return; }
+  if (pass !== confirm) { alert('Passwords do not match.'); return; }
+  if (!terms) { alert('Please accept the Terms of Service.'); return; }
+
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Creating account...';
+  btn.disabled = true;
+  setTimeout(() => { window.location.href = '/login'; }, 1500);
+});
+</script>
+{% endblock %}

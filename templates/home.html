@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+{% block title %}Home — Medical AI Diagnosis{% endblock %}
+
+{% block content %}
+
+<!-- ========== HERO ========== -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+
+      <!-- Left -->
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="hero-badge">
+          <i class="fa-solid fa-shield-halved"></i>
+          AI Powered &bull; Accurate &bull; Instant
+        </div>
+        <h1 class="hero-title">
+          AI Powered<br>
+          <span class="highlight">Medical Diagnosis</span><br>
+          System
+        </h1>
+        <p class="hero-subtitle">
+          Upload medical images and receive instant AI-driven predictions
+          for chest diseases, brain tumours, and skin conditions.
+        </p>
+        <a href="#features" class="btn-hero-primary">
+          <i class="fa-solid fa-rocket"></i> Start Diagnosis
+        </a>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">3</div>
+            <div class="stat-label">AI Models</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Disease Types</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">Fast</div>
+            <div class="stat-label">Predictions</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right illustration -->
+      <div class="col-lg-6 hero-img-wrap">
+        <svg class="hero-illustration" viewBox="0 0 420 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background circle -->
+          <circle cx="210" cy="180" r="160" fill="url(#heroGrad)" opacity="0.15"/>
+          <!-- Monitor -->
+          <rect x="80" y="60" width="260" height="180" rx="18" fill="white" stroke="#0ea5e9" stroke-width="3"/>
+          <rect x="95" y="75" width="230" height="150" rx="10" fill="#f0f9ff"/>
+          <!-- ECG line -->
+          <polyline points="105,150 130,150 145,110 160,190 175,130 190,150 240,150 255,100 270,180 285,140 305,150 325,150"
+            stroke="#0ea5e9" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Green dot -->
+          <circle cx="325" cy="150" r="5" fill="#10b981"/>
+          <!-- Stand -->
+          <rect x="195" y="240" width="30" height="30" rx="4" fill="#0ea5e9" opacity="0.3"/>
+          <rect x="150" y="268" width="120" height="12" rx="6" fill="#0ea5e9" opacity="0.25"/>
+          <!-- Floating pills -->
+          <circle cx="60" cy="100" r="20" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+          <text x="60" y="106" text-anchor="middle" font-size="16" fill="#10b981">✓</text>
+          <circle cx="360" cy="80" r="18" fill="#dbeafe" stroke="#0ea5e9" stroke-width="2"/>
+          <text x="360" y="86" text-anchor="middle" font-size="14" fill="#0ea5e9">AI</text>
+          <circle cx="50" cy="260" r="16" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+          <text x="50" y="266" text-anchor="middle" font-size="13" fill="#8b5cf6">🧠</text>
+          <circle cx="370" cy="260" r="16" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+          <text x="370" y="266" text-anchor="middle" font-size="13">🩻</text>
+          <defs>
+            <radialGradient id="heroGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#0ea5e9"/>
+              <stop offset="100%" stop-color="#10b981"/>
+            </radialGradient>
+          </defs>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURES ========== -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="text-center">
+      <div class="hero-badge mb-3">
+        <i class="fa-solid fa-star"></i> Our Capabilities
+      </div>
+      <h2 class="section-title">Choose Your Diagnosis</h2>
+      <p class="section-sub">Select a module below to upload your medical image and receive an AI prediction instantly.</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- CARD 1 — X-Ray -->
+      <div class="col-lg-4 col-md-6">
+        <div class="feature-card xray h-100">
+          <div class="feature-icon-wrap">
+            <i class="fa-solid fa-lungs"></i>
+          </div>
+          <h4>Chest X-Ray Prediction</h4>
+          <p>Detect pneumonia and other chest diseases using our trained MobileNetV2 deep learning model.</p>
+          <a href="/xray" class="btn-card">
+            <i class="fa-solid fa-arrow-right"></i> Predict Now
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 2 — MRI -->
+      <div class="col-lg-4 col-md-6">
+        <div class="feature-card mri h-100">
+          <div class="feature-icon-wrap">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <h4>Brain MRI Prediction</h4>
+          <p>Analyze MRI scans for neurological abnormalities and detect the presence of brain tumours.</p>
+          <a href="/mri" class="btn-card">
+            <i class="fa-solid fa-arrow-right"></i> Predict Now
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 3 — Skin -->
+      <div class="col-lg-4 col-md-6">
+        <div class="feature-card skin h-100">
+          <div class="feature-icon-wrap">
+            <i class="fa-solid fa-hand-dots"></i>
+          </div>
+          <h4>Skin Disease Prediction</h4>
+          <p>Identify benign or malignant skin conditions from images using AI-powered classification.</p>
+          <a href="/skin" class="btn-card">
+            <i class="fa-solid fa-arrow-right"></i> Predict Now
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section id="about" style="padding:70px 0; background:linear-gradient(135deg,#f0f9ff,#ecfdf5);">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="hero-badge mb-3"><i class="fa-solid fa-circle-info"></i> About This Project</div>
+        <h2 class="section-title">Built for Medical AI Research</h2>
+        <p style="color:var(--muted);line-height:1.8;margin-top:1rem;">
+          This application uses state-of-the-art deep learning architectures including
+          <strong>MobileNetV2</strong> and custom <strong>CNNs</strong> trained on curated
+          medical datasets for chest X-rays, brain MRIs, and skin images.
+        </p>
+        <div class="row g-3 mt-3">
+          <div class="col-6">
+            <div style="background:white;border-radius:12px;padding:1rem;box-shadow:var(--shadow-sm);text-align:center;">
+              <i class="fa-solid fa-flask" style="color:var(--primary);font-size:1.5rem;"></i>
+              <p style="font-weight:700;margin:0.4rem 0 0;font-size:0.9rem;">TensorFlow</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="background:white;border-radius:12px;padding:1rem;box-shadow:var(--shadow-sm);text-align:center;">
+              <i class="fa-solid fa-server" style="color:var(--emerald);font-size:1.5rem;"></i>
+              <p style="font-weight:700;margin:0.4rem 0 0;font-size:0.9rem;">Flask Backend</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="background:white;border-radius:12px;padding:1rem;box-shadow:var(--shadow-sm);text-align:center;">
+              <i class="fa-solid fa-eye" style="color:#8b5cf6;font-size:1.5rem;"></i>
+              <p style="font-weight:700;margin:0.4rem 0 0;font-size:0.9rem;">OpenCV</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="background:white;border-radius:12px;padding:1rem;box-shadow:var(--shadow-sm);text-align:center;">
+              <i class="fa-brands fa-python" style="color:#f59e0b;font-size:1.5rem;"></i>
+              <p style="font-weight:700;margin:0.4rem 0 0;font-size:0.9rem;">Python 3.12</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center">
+        <div style="background:white;border-radius:20px;padding:2.5rem;box-shadow:var(--shadow-md);">
+          <i class="fa-solid fa-heart-pulse" style="font-size:4rem;color:var(--primary);margin-bottom:1rem;display:block;"></i>
+          <h5 style="font-weight:700;margin-bottom:0.5rem;">Medical AI Disclaimer</h5>
+          <p style="color:var(--muted);font-size:0.88rem;line-height:1.7;">
+            This tool is designed for educational and research purposes.
+            Predictions are AI-generated and should <strong>not</strong> replace
+            professional medical diagnosis. Always consult a qualified healthcare provider.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

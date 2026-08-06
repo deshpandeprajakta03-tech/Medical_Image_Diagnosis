@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Medical AI Diagnosis{% endblock %}</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <i class="fa-solid fa-heart-pulse"></i>
+      Medical<span>AI</span>
+    </a>
+    <button class="navbar-toggler border-0" type="button"
+            data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <i class="fa-solid fa-bars" style="color:var(--primary)"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-center gap-1">
+        <li class="nav-item">
+          <a class="nav-link {% if request.path=='/' %}active{% endif %}" href="/">
+            <i class="fa-solid fa-house me-1"></i>Home
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            <i class="fa-solid fa-stethoscope me-1"></i>Predictions
+          </a>
+          <ul class="dropdown-menu border-0 shadow-sm" style="border-radius:12px;">
+            <li>
+              <a class="dropdown-item py-2" href="/xray">
+                <i class="fa-solid fa-lungs me-2 text-primary"></i>Chest X-Ray
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item py-2" href="/mri">
+                <i class="fa-solid fa-brain me-2" style="color:#8b5cf6"></i>Brain MRI
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item py-2" href="/skin">
+                <i class="fa-solid fa-hand-dots me-2" style="color:var(--emerald)"></i>Skin Disease
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about">
+            <i class="fa-solid fa-circle-info me-1"></i>About
+          </a>
+        </li>
+        <li class="nav-item ms-2">
+          <a class="nav-link btn-nav-login" href="/login">
+            <i class="fa-solid fa-right-to-bracket me-1"></i>Login
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== PAGE CONTENT ========== -->
+{% block content %}{% endblock %}
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <p>
+      &copy; 2026 <span>MedicalAI</span> &mdash;
+      Built with <i class="fa-solid fa-heart" style="color:#ef4444"></i> using
+      Flask &amp; TensorFlow &nbsp;|&nbsp; Prajakta Deshpande
+    </p>
+  </div>
+</footer>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner-ring"></div>
+  <p class="loading-text">Analyzing image with AI...</p>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>
